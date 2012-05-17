@@ -17,5 +17,7 @@ Q3 <- function(data, N, M){
   win.han <- (1/2) * (1 - cos(2 * pi * ((1:N) + 0.5)/N))
   data.han <- data * win.han
   
+  
+  # Returns the spectrum estimate only, no frequency information
   multi[[2]]
 }

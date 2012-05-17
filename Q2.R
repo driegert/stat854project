@@ -14,7 +14,8 @@ Q2 <- function(demeaned){
   }
   R.B <- R.B/R.B[1]
   
-  plot(0:200, R.B, ylab=expression(R[B]), xlab="Lag", type = "h")
+  plot(0:200, R.B, ylab=expression(R[B]), xlab="Lag", type = "h",
+       main="BMG microbarometer Autocorrelations")
   
   R.B
 }
