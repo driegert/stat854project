@@ -29,7 +29,7 @@ Q1 <- function(path, N){
 
   qqnorm(data_demean)
   qqline(data_demean)
-  shapiro.test(data_demean)
+  print( shapiro.test(data_demean) )
 
   # Reasonably clear from the moments that this data is
   # most likely not normal.
