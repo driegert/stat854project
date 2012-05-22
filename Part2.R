@@ -21,6 +21,9 @@ R.B <- Q2(data[[2]][1:N])
 source('Q3.R')
 spec <- Q3(data[[2]][1:N], N, 2048)
 
+source("Q4.R")
+s.amt <- Q4(data, N, NW = 10, K = 20 )
+
 source('Q5.R')
 Q5(s.mt, data[[2]][1:N], N)
 
