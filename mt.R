@@ -67,11 +67,12 @@ mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE, tol=0.01){
     S <- rowMeans(eS[,1:2])
     # Starting value for the convergence diagnostic
     cd <- sum(S); cval <- tol + 1
+    # Variance of the data
+    sig2 <- (N-1)/N*var(data)
     
     while( cval > tol ){
       # Iterate
       # Calculate the adjusted weights
-      sig2 <- sum(S)
       d <- eS*0.
       for( i in 0:(K-1) ) d[,i+1] <- sqrt(lam[i+1])*S / ( lam[i+1]*S + (1-lam[i+1])*sig2 )
       # Calculate the re-weighted spectrum estimate
