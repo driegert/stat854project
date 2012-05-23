@@ -18,6 +18,8 @@ data <- Q1(data_path, N)
 source('Q2.R')
 R.B <- Q2(data[[2]][1:N])
 
+# Computes a simple multi-taper estimate and 
+# 3 types of sectioned Hanning spectral estimate.
 source('Q3.R')
 spec <- Q3(data[[2]][1:N], N, 2048)
 
@@ -25,8 +27,7 @@ source("Q4.R")
 s.amt <- Q4(data, N, NW = 10, K = 20 )
 
 source('Q5.R')
-Q5(s.amt, data[[2]][1:N], N)
+Q5(s.amt$data.mt, data[[2]][1:N], N)
 
 source('Q6.R')
-Q6(s.amt$data.mt, R.B)
-
+Q6(s.amt$data.mt, R.B, N)
