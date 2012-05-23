@@ -27,7 +27,7 @@ source("Q4.R")
 s.amt <- Q4(data, N, NW = 10, K = 20 )
 
 source('Q5.R')
-Q5(s.amt$data.mt, data[[2]][1:N], N)
+Q5(s.amt$data.mt, data[[2]][1:N])
 
 source('Q6.R')
 Q6(s.amt$data.mt, R.B, N)
