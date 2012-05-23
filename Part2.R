@@ -28,4 +28,5 @@ source('Q5.R')
 Q5(s.amt, data[[2]][1:N], N)
 
 source('Q6.R')
-Q6(s.mt[[2]], R.B)
+Q6(s.amt$data.mt, R.B)
+
