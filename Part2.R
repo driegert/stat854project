@@ -2,7 +2,7 @@
 # STATS 854 - Final Project
 ####
 
-# setwd('/home/dave/school_lab/Courses/STAT854/Assignments/Project/')
+# setwd('/home/dave/school_lab/Courses/STAT854/Assignments/sp/')
 library('lpstuff')
 source('mt.R')
 
@@ -19,7 +19,7 @@ source('Q2.R')
 R.B <- Q2(data[[2]][1:N])
 
 source('Q3.R')
-s.mt <- Q3(data[[2]][1:N], N, 2048)
+spec <- Q3(data[[2]][1:N], N, 2048)
 
 source("Q4.R")
 s.amt <- Q4(data, N, NW = 10, K = 20 )
