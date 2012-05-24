@@ -1,8 +1,6 @@
 # Question 7
 ############
 
-# TODO:
-
 Q7 <- function(data, R, AR_order){
   N <- length(data)
   

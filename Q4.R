@@ -2,9 +2,6 @@
 # Question 4
 ###
 
-# TODO:
-# - Adaptive weight this beeeatch!
-
 Q4 <- function(data, N, NW, K){
   est <- mt( data[[2]], N = N, NW = NW, K = K )
   plot(est$freq, est$data.mt, log="y", type="l"

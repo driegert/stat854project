@@ -89,7 +89,7 @@ mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE, tol=0.01){
     }
   }
   
-  freq <- seq(0, 0.5, 1/M)
+  freq <- seq(0, 0.05, 1/(10*M))
   
   data.frame(freq=freq, data.mt=data.mt[1:(M/2 + 1)])
 }
