@@ -1,0 +1,266 @@
+#LyX 2.0 created this file. For more info see http://www.lyx.org/
+\lyxformat 413
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\use_mhchem 1
+\use_mathdots 1
+\cite_engine basic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+STAT 854 - Final Project
+\end_layout
+
+\begin_layout Author
+Dave Riegert & Aaron Springford
+\end_layout
+
+\begin_layout Date
+April 11, 2012
+\end_layout
+
+\begin_layout Section*
+Part 2 - Programming
+\end_layout
+
+\begin_layout Standard
+For all of the following questions we have used the first column of the
+ Black Forest Observatory barometric data that was gathered from the BMG
+ microbarometer.
+\end_layout
+
+\begin_layout Subsection*
+Question 1 - Plot raw data, mean & median, Gaussian?:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q1_data.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+BMG microbarometer raw data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Estimating the mean and median of the data we obtained:
+\begin_inset Formula 
+\begin{align*}
+\text{Mean: } & 677364\\
+\text{Median: } & 676209.583
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Having the mean and the median so close together tells us that the data
+ is mostly linear (I think?) and that there are few outlying values.
+\end_layout
+
+\begin_layout Standard
+In order to determine if the data is normal we first calculated the second
+ through fourth moments as recommended:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\text{\text{\text{Second Moment: }}} & 0.0181\\
+\text{Third Moment: } & -0.0007\\
+\text{Fourth Moment: } & 0.00059
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Based on these moments we would conclude that the data is not Gaussian.
+ In addition, a qqplot was done with the same conclusion drawn (notice the
+ tails of the data).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q1_norm.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+qqnorm plot of the data - qualitative test for normality
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, a Shapiro-Wilk normality test was performed resulting in 
+\begin_inset Formula $W=0.9182$
+\end_inset
+
+ and 
+\begin_inset Formula $p<2.2\times10^{16}$
+\end_inset
+
+ which tells us with great confidence that this data is not Guassian.
+\end_layout
+
+\begin_layout Subsection*
+Question 2 - Bartlett Autocorrelations:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q2_bartlett.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Standard Bartlett autocorrelations of demeaned data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 3 - Multitaper spectrum, sectioning with Hanning window:
+\end_layout
+
+\end_body
+\end_document

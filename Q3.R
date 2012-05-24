@@ -20,7 +20,7 @@ Q3 <- function(data, N, M){
   data.han1 <- data[1:400] * win.han
   data.han2 <- data[201:600] * win.han
   data.han3 <- data[401:800] * win.han
-  data.han4 <- data[601:1000] * win.han
+  data.han4 <- data[601:N] * win.han
   
   # Calculate the section spectra
   spec.han1 <- (abs(fft(c(data.han1, rep(0, M - M2)))))^2
