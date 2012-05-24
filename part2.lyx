@@ -485,6 +485,13 @@ status open
 
 \begin_layout Plain Layout
 \align center
+\begin_inset Graphics
+	filename q4_multitaper.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
 
 \end_layout
 
@@ -506,6 +513,51 @@ Multitaper with adaptive weighting
 
 \end_inset
 
+
+\end_layout
+
+\begin_layout Subsection*
+Question 5 - Approximate variance, estimate quantization noise power
+\end_layout
+
+\begin_layout Standard
+We computed
+\begin_inset Formula 
+\[
+I_{S}=\int_{-F_{Nyq}}^{+F_{Nyq}}\hat{S}(f)df
+\]
+
+\end_inset
+
+ by summing over the FFT bins (as suggested) and compared with the sample
+ variance.
+ We also estimated the quantization noise power getting values of:
+\begin_inset Formula 
+\begin{align*}
+I_{s} & =1.862286\times10^{8}\\
+\sigma^{2} & =1.867187\times10^{8}\\
+\text{QNP} & =9.096867\times10^{-2}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We notice that the estimated variance from the spectrum is 
+\begin_inset Formula $99.7\%$
+\end_inset
+
+ of the sample variance for the first 1000 samples.
+\end_layout
+
+\begin_layout Subsection*
+Question 6 - Autocorrelation through FFT of specturm, compare with previous
+ estimates
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 
