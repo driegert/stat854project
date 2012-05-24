@@ -417,6 +417,41 @@ Sectioning approach using a Hanning window - geometric mean taken
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q3_hanningCompare.pdf
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Comparison between multitaper and the three Hanning estimates
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Plain Layout
 
 \end_layout
@@ -431,6 +466,46 @@ Question 4 - Multitaper NW=10, adaptive weighting
 \end_layout
 
 \begin_layout Standard
+A multitaper with a time-bandwidth 
+\begin_inset Formula $NW=10$
+\end_inset
+
+, number of tapers 
+\begin_inset Formula $K=20$
+\end_inset
+
+, and adaptive weighting applied.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Multitaper with adaptive weighting
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
