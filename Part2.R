@@ -30,4 +30,32 @@ source('Q5.R')
 Q5(s.amt$data.mt, data[[2]][1:N])
 
 source('Q6.R')
-Q6(s.amt$data.mt, R.B, N)
+R <- Q6(s.amt$data.mt, R.B, N)
+
+# Returns the prewhitened data with N-AR_order points
+source('Q7.R')
+y.t <- Q7(data[[2]][1:N], R[[2]], 3)
+
+source('Q8.R')
+Q8(y.t)
+
+# Let's plot all this business!
+
+# Question 1
+###
+pdf("q1_data.pdf")
+plot(data$raw, type='l', xlab="Time (UNITS)", ylab="Pressure (UNITS)",
+     main="BMG microbarameter - April 4, 2006 - 0 to 2:46:40 (h:mm:ss)")
+dev.off()
+
+pdf("q1_norm.pdf")
+qqnorm(data$demean)
+qqline(data$demean)
+dev.off()
+
+# Question 2
+####
+pdf("q2_bartlett.pdf")
+plot(0:200, R.B, ylab=expression(R[B]), xlab="Lag", type = "h",
+     main="BMG microbarometer Autocorrelations")
+dev.off()
