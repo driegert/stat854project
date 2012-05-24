@@ -12,5 +12,5 @@ Q6 <- function(s.mt, R.B, N){
   R <- R.var/R.var[1]
   plot(R.B, ylim=c(min(c(R, R.B)), max(c(R, R.B))), type="h")
   lines(R, col='red')
-data.frame( R.var, R, R.B )
+data.frame( R.var, R )
 }

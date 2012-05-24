@@ -10,5 +10,10 @@ Q5 <- function(s.mt, data){
   N <- length( data )
   I.s <- ( sum( 2*s.mt[-c(1,length(s.mt))] ) + sum( s.mt[c(1,length(s.mt))] ) )/M
   S2 <- (N-1)/N*var(data)
-  c(I.s, S2)
+
+  # Estimate quantization noise power
+  # Use the last fifth of the spectrum
+  qnp <- ( sum( 2*s.mt[-c(1:(floor(4*length(s.mt)/5)))] ) - s.mt[length(s.mt)] )/(ceiling(M/5)-1)
+
+c(I.s, S2, qnp)
 }
