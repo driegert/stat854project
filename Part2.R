@@ -39,6 +39,9 @@ y.t <- Q7(data[[2]][1:N], R[[2]], 3)
 source('Q8.R')
 Q8(y.t)
 
+source("Q9.R")
+q9 <- Q9( data, N, NW = 10, K = 20 )
+
 # Let's plot all this business!
 
 # Question 1
