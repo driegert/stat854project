@@ -9,11 +9,10 @@
 # median, plots the data, and returns the data
 # and demeaned data.
 
-Q1 <- function(path, N){
+Q1 <- function(path, N, instrument = 1){
   # Read in data
   # BMG microbarometer
-  data <- read.table(path)[1]
-  data <- data[[1]]
+  data <- read.table(path)[[instrument]]
 
   # Q1
   plot(data[1:N], type='l')

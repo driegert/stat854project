@@ -42,6 +42,17 @@ Q8(y.t)
 source("Q9.R")
 q9 <- Q9( data, N, NW = 10, K = 20 )
 
+source("Q10.R")
+data.2 <- Q1(data_path, N, instrument = 2)
+R.B.2 <- Q2(data.2[[2]][1:N])
+s.amt.2 <- Q4(data.2, N, NW = 10, K = 20 )
+R.2 <- Q6(s.amt.2$data.mt, R.B.2, N)
+y.t.2 <- Q7(data.2[[2]][1:N], R.2[[2]], 3)
+
+q10 <- Q10( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=10, K = 20 )
+
+
+
 # Let's plot all this business!
 
 # Question 1
