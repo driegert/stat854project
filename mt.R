@@ -5,7 +5,8 @@
 
 # TODO:
 
-mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE, tol=0.01){
+mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE
+              , tol=0.0001, forcoh = FALSE){
 
   W <- NW / N
   
@@ -62,24 +63,26 @@ mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE, tol=0.01){
     lam <- rev(lam)[1:K]
     # Calculate the eigenspectra
     eS <- matrix( 0., nrow = M, ncol = K )
+    if( forcoh ) eC <- matrix( complex(1), nrow = M, ncol = K )
     for( i in 0:(K-1) ) eS[,i+1] <- (abs(fft(c(data * dpss$Z[,N-i], rep(0, M-N)))))^2
+    if( forcoh ) for( i in 0:(K-1) ) eC[,i+1] <- fft(c(data * dpss$Z[,N-i], rep(0, M-N)))
     # Use the first two eigenspectra as our initial estimate
     S <- rowMeans(eS[,1:2])
-    # Starting value for the convergence diagnostic
-    cd <- sum(S); cval <- tol + 1
     # Variance of the data
     sig2 <- (N-1)/N*var(data)
-    
+    d <- eS*0. + 1
+    # Starting value for the convergence diagnostic
+    cd <- sum(d[,1]); cval <- tol + 1
+        
     while( cval > tol ){
       # Iterate
       # Calculate the adjusted weights
-      d <- eS*0.
-      for( i in 0:(K-1) ) d[,i+1] <- sqrt(lam[i+1])*S / ( lam[i+1]*S + (1-lam[i+1])*sig2 )
+      for( i in 0:(K-1) ) d[,i+1] <- lam[i+1]*S / ( lam[i+1]*S + (1-lam[i+1])*sig2 )
       # Calculate the re-weighted spectrum estimate
       S <- rowSums( d^2 * eS )/rowSums( d^2 )
       # Convergence diagnostic
-      cval <- abs( cd - sum(S) )/cd
-      cd <- sum(S)
+      cval <- abs( cd - sum(d[,1]) )/cd
+      cd <- sum(d[,1])
     }  
   data.mt <- S  
   }else{
@@ -90,6 +93,7 @@ mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE, tol=0.01){
   }
   
   freq <- seq(0, 1/(2*10), 1/(10*M))
-  
-  data.frame(freq=freq, data.mt=data.mt[1:(M/2 + 1)])
+  out <- data.frame(freq=freq, data.mt=data.mt[1:(M/2 + 1)])
+  if( !forcoh ) return( out )
+  if( forcoh ) return( list( spec = out, eC = eC, d = d ) )
 }
