@@ -37,7 +37,7 @@ source('Q7.R')
 y.t <- Q7(data[[2]][1:N], R[[2]], 3)
 
 source('Q8.R')
-Q8(y.t)
+spec.est <- Q8(y.t$y.t, y.t$phi)
 
 source("Q9.R")
 q9 <- Q9( data, N, NW = 10, K = 20 )
@@ -47,8 +47,9 @@ q9 <- Q9( data, N, NW = 10, K = 20 )
 # Question 1
 ###
 pdf("q1_data.pdf")
-plot(data$raw, type='l', xlab="Time (UNITS)", ylab="Pressure (UNITS)",
-     main="BMG microbarameter - April 4, 2006 - 0 to 2:46:40 (h:mm:ss)")
+plot(seq(0, 9999, 10), data$raw, type='l', xlab="Time (s)", ylab="Pressure (UNITS)",
+     main="BMG microbarameter", 
+     sub="April 4, 2006 - 0 to 2:46:40 (h:mm:ss)")
 dev.off()
 
 pdf("q1_norm.pdf")
@@ -127,3 +128,23 @@ dev.off()
 
 # Question 7
 ########
+pdf("q7_residuals.pdf")
+plot(seq(1000-length(y.t), 10*length(y.t), 10), y.t, type='l', xlab="Time (s)", 
+     ylab="Prediction Residual", 
+     main="BMG microbarometer - AR2 Prediction Residuals")
+dev.off()
+
+# Question 8
+#######
+pdf("q8_ResidSpec.pdf")
+plot(spec.est$res.spec, type='l', log='y',
+     xlab="Frequency (Hz)", ylab="Spectrum")
+dev.off()
+
+pdf("q8_Hf.pdf")
+plot(spec.est$H, type='l')
+dev.off()
+
+pdf("q8_correctedSpec.pdf")
+plot()
+dev.off()

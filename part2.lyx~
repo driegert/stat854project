@@ -558,6 +558,51 @@ Question 6 - Autocorrelation through FFT of specturm, compare with previous
 \end_layout
 
 \begin_layout Standard
+We took the Fourier transform of the multitaper estimate computed in question
+ #5 and compared it with the original Bartlett estimates computed in question
+ #2.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q6_autoCompare.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Bartlett Autocorrelations compared with FFT of Multitaper Spectral estimate
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 7 - AR2 model of the process
+\end_layout
+
+\begin_layout Standard
 
 \end_layout
 

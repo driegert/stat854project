@@ -585,7 +585,8 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Bartlett Autocorrelations compared with FFT of Multitaper Spectral estimate
+Bartlett Autocorrelations (black) compared with FFT of Multitaper Spectral
+ estimate (red)
 \end_layout
 
 \end_inset
@@ -600,6 +601,62 @@ Bartlett Autocorrelations compared with FFT of Multitaper Spectral estimate
 
 \begin_layout Subsection*
 Question 7 - AR2 model of the process
+\end_layout
+
+\begin_layout Standard
+We used a Yule-Walker-esque approach in our next-step prediction to obtain
+ prediction residuals of the form:
+\begin_inset Formula 
+\[
+y(t)=x(t)-\sum_{j=1}^{P}\alpha_{j}^{(P)}x(t-j)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q7_residuals.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Plot of AR2 Prediction Residuals
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 8 - Repetition of spectrum estimation with prewhitened data
 \end_layout
 
 \begin_layout Standard
