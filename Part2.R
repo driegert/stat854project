@@ -114,3 +114,16 @@ plot(s.amt$freq, s.amt$data.mt, type='l', log='y',
      main="BMG microbarometer - Multitaper, Adpt Weight",
      sub="1000 samples; NW=10; K=20; M=2048")
 dev.off()
+
+# Question 6
+#####
+pdf("q6_autoCompare.pdf")
+plot(R.B, ylim=c(min(c(R$R, R.B)), max(c(R$R, R.B))), 
+     ylab="Autocorrelation", xlab="Lag", 
+     type="h", main="Bartlett Autocorrelation vs. FFT of Spectrum 
+     Autocorrelation est.")
+lines(R$R, col='red')
+dev.off()
+
+# Question 7
+########
