@@ -37,7 +37,7 @@ source('Q7.R')
 y.t <- Q7(data[[2]][1:N], R[[2]], 3)
 
 source('Q8.R')
-spec.est <- Q8(y.t$y.t, y.t$phi)
+spec.est <- Q8(y.t$y.t, y.t$coef)
 
 source("Q9.R")
 q9 <- Q9( data, N, NW = 10, K = 20 )
