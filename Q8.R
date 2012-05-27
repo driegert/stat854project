@@ -15,5 +15,5 @@ Q8 <- function(y.t, phi){
   spec.x <- est$data.mt / corr
   H <- est$data.mt / spec.x
   
-  list(res.spec=est, data.corr=spec.x, H=H)
+  list(freq=f, res.spec=est, data.corr=spec.x, H=H)
 }
