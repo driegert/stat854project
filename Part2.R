@@ -51,8 +51,8 @@ R.2 <- Q6(s.amt.2$data.mt, R.B.2, N)
 y.t.2 <- Q7(data.2[[2]][1:N], R.2[[2]], 3)
 
 q10 <- Q10( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=10, K = 20 )
-#source("Q10noadapt.R")
-#q10 <- Q10noadapt( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=7 )
+source("Q10noadapt.R")
+q10.noadapt <- Q10noadapt( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=7 )
 
 
 # Let's plot all this business!
@@ -177,3 +177,34 @@ dev.off()
 
 # Question 10
 ######
+
+# The magnitude squared coherences
+pdf( "Q10.pdf" )
+  par( mfrow = c(2,1) )
+  plot(s.amt$freq, q10$msc[1:length(s.amt$freq)]
+       , type = "l", ylim = c(0,1), las = 1
+       , xlab = "Frequency", ylab = "Magnitude squared coherence"
+       , main = "Question 10: With adaptive weighting" )
+  plot(s.amt$freq, q10$phase[1:length(s.amt$freq)]
+       , type = "l", ylim = c(-180,180), las = 1
+       , xlab = "Frequency", ylab = "Coherence phase"
+       , main = "Question 10: With adaptive weighting" )
+dev.off()
+
+pdf( "Q10-noadapt.pdf" )
+par( mfrow = c(2,1) )
+plot(s.amt$freq, q10.noadapt$msc[1:length(s.amt$freq)]
+     , type = "l", ylim = c(0,1), las = 1
+     , xlab = "Frequency", ylab = "Magnitude squared coherence"
+     , main = "Question 10: No adaptive weighting")
+plot(s.amt$freq, q10.noadapt$phase[1:length(s.amt$freq)]
+     , type = "l", ylim = c(-180,180), las = 1
+     , xlab = "Frequency", ylab = "Coherence phase"
+     , main = "Question 10: No adaptive weighting" )
+dev.off()
+
+     
+     
+     
+     
+     
