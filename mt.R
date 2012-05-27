@@ -85,11 +85,17 @@ mt <- function(data, N, NW, K=NULL, M=NULL, adaptiveWeight=TRUE
       cd <- sum(d[,1])
     }  
   data.mt <- S  
-  }else{
+  }
+  if(!adaptiveWeight){
     # Compute the multitaper spectrum estimate.
     for (i in 0:(K-1)){
       data.mt <- data.mt + ((1/K) * (abs(fft(c(data * dpss$Z[,N-i], rep(0, M-N)))))^2)
     }
+    if( forcoh ){
+      eC <- matrix( complex(1), nrow = M, ncol = K )
+      for( i in 0:(K-1) ) eC[,i+1] <- fft(c(data * dpss$Z[,N-i], rep(0, M-N)))
+      d <- matrix( 1., nrow = M, ncol = K )
+    }     
   }
   
   freq <- seq(0, 1/(2*10), 1/(10*M))
