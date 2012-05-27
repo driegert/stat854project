@@ -43,5 +43,5 @@ Q1 <- function(path, N, instrument = 1){
   # most likely not normal.
   # The Shapiro-Wilk test confirms this.
   
-  data.frame(raw=data[1:N], demean=data_demean)
+  list(raw=data, demean=data_demean)
 }

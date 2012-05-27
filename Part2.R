@@ -24,7 +24,7 @@ source('Q3.R')
 spec <- Q3(data[[2]][1:N], N, 2048)
 
 source("Q4.R")
-s.amt <- Q4(data, N, NW = 10, K = 20 )
+s.amt <- Q4(data[[2]][1:N], N, NW = 10, K = 20 )
 
 source('Q5.R')
 Q5(s.amt$data.mt, data[[2]][1:N])
@@ -37,7 +37,7 @@ source('Q7.R')
 y.t <- Q7(data[[2]][1:N], R[[2]], 3)
 
 source('Q8.R')
-spec.est <- Q8(y.t$y.t, y.t$phi)
+spec.est <- Q8(y.t$y.t, y.t$coef)
 
 source("Q9.R")
 data9 <- read.table( data_path )
@@ -50,7 +50,7 @@ s.amt.2 <- Q4(data.2, N, NW = 10, K = 20 )
 R.2 <- Q6(s.amt.2$data.mt, R.B.2, N)
 y.t.2 <- Q7(data.2[[2]][1:N], R.2[[2]], 3)
 
-q10 <- Q10( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=7 )
+q10 <- Q10( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=10, K = 20 )
 #source("Q10noadapt.R")
 #q10 <- Q10noadapt( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=7 )
 
@@ -151,13 +151,29 @@ dev.off()
 #######
 pdf("q8_ResidSpec.pdf")
 plot(spec.est$res.spec, type='l', log='y',
-     xlab="Frequency (Hz)", ylab="Spectrum")
+     xlab="Frequency (Hz)", ylab="Spectrum", 
+     main="Spectrum of the AR2 Prediction Residuals")
 dev.off()
 
+# ABSOLUTE VALUE SYMBOL IN ylab NEEDED!!
 pdf("q8_Hf.pdf")
-plot(spec.est$H, type='l')
+plot(spec.est$freq, spec.est$H, type='l', xlab="Frequency (Hz)", 
+     ylab=expression(H(f)^2), 
+     main="TITLE HERE")
 dev.off()
 
 pdf("q8_correctedSpec.pdf")
-plot()
+plot(spec.est$freq, spec.est$data.corr, type='l', log='y', 
+     xlab="Frequency (Hz)", ylab="Spectrum", 
+     main="Comparison of Direct and Prewhitened Estimations")
+lines(s.amt, col='red')
+legend("topright", c("Prewhitened", "Direct"), col=c("black", "red"), 
+       lwd=c(1,1))
 dev.off()
+
+# Question 9
+######
+
+
+# Question 10
+######
