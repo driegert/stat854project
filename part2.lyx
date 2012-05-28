@@ -44,10 +44,10 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2.5cm
-\topmargin 2.5cm
-\rightmargin 2.5cm
-\bottommargin 2.5cm
+\leftmargin 2in
+\topmargin 1in
+\rightmargin 2in
+\bottommargin 1in
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -102,7 +102,7 @@ status collapsed
 \begin_inset Graphics
 	filename q1_data.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -114,6 +114,13 @@ status collapsed
 
 \begin_layout Plain Layout
 BMG microbarometer raw data
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:BMG-microbarometer-raw"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -140,12 +147,12 @@ Estimating the mean and median of the data we obtained:
 \end_layout
 
 \begin_layout Standard
-Having the mean and the median so close together tells us that the data
- is mostly linear (I think?) and that there are few outlying values.
+Having the mean and the median so close together suggests that the distribution
+ of the data is reasonably symmetric.
 \end_layout
 
 \begin_layout Standard
-In order to determine if the data is normal we first calculated the second
+In order to determine if the data is Normal we first calculated the second
  through fourth moments as recommended:
 \end_layout
 
@@ -164,8 +171,14 @@ In order to determine if the data is normal we first calculated the second
 
 \begin_layout Standard
 Based on these moments we would conclude that the data is not Gaussian.
- In addition, a qqplot was done with the same conclusion drawn (notice the
- tails of the data).
+ A Normal quantile-quantile plot suggested the same conclusion (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:qqnorm-plot-of"
+
+\end_inset
+
+; notice the truncated tails of the data).
 \end_layout
 
 \begin_layout Standard
@@ -179,7 +192,7 @@ status collapsed
 \begin_inset Graphics
 	filename q1_norm.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -191,6 +204,13 @@ status collapsed
 
 \begin_layout Plain Layout
 qqnorm plot of the data - qualitative test for normality
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:qqnorm-plot-of"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -208,15 +228,16 @@ qqnorm plot of the data - qualitative test for normality
 \end_layout
 
 \begin_layout Standard
-Finally, a Shapiro-Wilk normality test was performed resulting in 
+Finally, a Shapiro-Wilk normality test was performed.
+ The test statistic value 
 \begin_inset Formula $W=0.9182$
 \end_inset
 
- and 
+ had a corresponding p-value of 
 \begin_inset Formula $p<2.2\times10^{16}$
 \end_inset
 
- which tells us with great confidence that this data is not Guassian.
+, strongly rejecting the hypothesis that the data is Gaussian.
 \end_layout
 
 \begin_layout Subsection*
@@ -224,17 +245,36 @@ Question 2 - Bartlett Autocorrelations:
 \end_layout
 
 \begin_layout Standard
+(See figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Standard-Bartlett-autocorrelatio"
+
+\end_inset
+
+.) The standard Bartlett autocorrelations might lead some to conclude that
+ this is a 
+\emph on
+long memory process
+\emph default
+.
+ However, this is a poor estimate of the autocorrelations, and gives a very
+ different estimate than the multitaper-derived autocorrelations, as we
+ will see later (question 6).
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q2_bartlett.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -246,6 +286,13 @@ status open
 
 \begin_layout Plain Layout
 Standard Bartlett autocorrelations of demeaned data
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Standard-Bartlett-autocorrelatio"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -269,22 +316,66 @@ The following figures plot the spectrum of the first 1000 samples, zero
 \end_inset
 
 .
- With the Hanning windows we used the arithmetic mean, median, and geometric
- mean respectivley.
+ We estimated the spectrum using the multitaper estimate, NW = 6, K = 5
+ (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Spectrum-using-multitaper"
+
+\end_inset
+
+).
+ With the Hanning windows we tried the arithmetic mean (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hanning-mean"
+
+\end_inset
+
+), median (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hanning-median"
+
+\end_inset
+
+), and geometric mean (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Hanning-geometric"
+
+\end_inset
+
+).
+ The Hanning sectioning method had 5 data sections offset by 50 percent
+ (i.e.
+ 400 data points per estimate).
+\end_layout
+
+\begin_layout Standard
+Comparing the estimates, we get rather similar results (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Multitaper-Hanning-comparison"
+
+\end_inset
+
+).
+ 
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q3_multitaper.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -296,6 +387,13 @@ status open
 
 \begin_layout Plain Layout
 Spectrum using multitaper method
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Spectrum-using-multitaper"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -316,14 +414,14 @@ Spectrum using multitaper method
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q3_hanMean.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -335,6 +433,13 @@ status open
 
 \begin_layout Plain Layout
 Sectioning approach using Hanning window - mean of all sections
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hanning-mean"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -351,14 +456,14 @@ Sectioning approach using Hanning window - mean of all sections
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q3_hanMedian.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -371,6 +476,13 @@ status open
 \begin_layout Plain Layout
 Sectioning approach using a Hanning window - median of each frequency of
  ensemble
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hanning-median"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -391,14 +503,14 @@ Sectioning approach using a Hanning window - median of each frequency of
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q3_hanGeoMean.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -410,6 +522,13 @@ status open
 
 \begin_layout Plain Layout
 Sectioning approach using a Hanning window - geometric mean taken
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Hanning-geometric"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -426,14 +545,14 @@ Sectioning approach using a Hanning window - geometric mean taken
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q3_hanningCompare.pdf
 	lyxscale 50
-	scale 45
+	scale 50
 
 \end_inset
 
@@ -445,6 +564,13 @@ status open
 
 \begin_layout Plain Layout
 Comparison between multitaper and the three Hanning estimates
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Multitaper-Hanning-comparison"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -474,21 +600,33 @@ A multitaper with a time-bandwidth
 \begin_inset Formula $K=20$
 \end_inset
 
-, and adaptive weighting applied.
+, and adaptive weighting applied (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Multitaper-with-adaptive"
+
+\end_inset
+
+).
+ The weights were on the eigenspectra across all frequencies, rather than
+ having different weights for each frequency-eigenspectrum combination.
+ The adaptive weighting results in more power at low frequencies, a smoother
+ spectrum at higher frequencies, and some interesting details at moderate
+ frequencies.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q4_multitaper.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -500,6 +638,13 @@ status open
 
 \begin_layout Plain Layout
 Multitaper with adaptive weighting
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Multitaper-with-adaptive"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -529,14 +674,16 @@ I_{S}=\int_{-F_{Nyq}}^{+F_{Nyq}}\hat{S}(f)df
 
 \end_inset
 
- by summing over the FFT bins (as suggested) and compared with the sample
+by summing over the FFT bins (as suggested) and compared with the sample
  variance.
- We also estimated the quantization noise power getting values of:
+ We also estimated the quantization noise power from the highest fifth of
+ the spectrum frequencies (that is, frequencies > 0.04).
+ We got values of
 \begin_inset Formula 
 \begin{align*}
-I_{s} & =1.862286\times10^{8}\\
-\sigma^{2} & =1.867187\times10^{8}\\
-\text{QNP} & =9.096867\times10^{-2}
+I_{s} & =1.846\times10^{8}\\
+\sigma^{2} & =1.867\times10^{8}\\
+\text{QNP} & =0.988
 \end{align*}
 
 \end_inset
@@ -546,14 +693,14 @@ I_{s} & =1.862286\times10^{8}\\
 
 \begin_layout Standard
 We notice that the estimated variance from the spectrum is 
-\begin_inset Formula $99.7\%$
+\begin_inset Formula $98.8\%$
 \end_inset
 
  of the sample variance for the first 1000 samples.
 \end_layout
 
 \begin_layout Subsection*
-Question 6 - Autocorrelation through FFT of specturm, compare with previous
+Question 6 - Autocorrelation through FFT of spectrum, compare with previous
  estimates
 \end_layout
 
@@ -561,20 +708,33 @@ Question 6 - Autocorrelation through FFT of specturm, compare with previous
 We took the Fourier transform of the multitaper estimate computed in question
  #5 and compared it with the original Bartlett estimates computed in question
  #2.
+ The 
+\emph on
+long memory process
+\emph default
+ interpretation seems less likely considering the multitaper estimates (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Bartlett-Multitaper-Autocorr"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q6_autoCompare.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -587,6 +747,13 @@ status open
 \begin_layout Plain Layout
 Bartlett Autocorrelations (black) compared with FFT of Multitaper Spectral
  estimate (red)
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Bartlett-Multitaper-Autocorr"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -604,8 +771,8 @@ Question 7 - AR2 model of the process
 \end_layout
 
 \begin_layout Standard
-We used a Yule-Walker-esque approach in our next-step prediction to obtain
- prediction residuals of the form:
+We used a Yule-Walker approach in our next-step prediction to obtain prediction
+ residuals of the form
 \begin_inset Formula 
 \[
 y(t)=x(t)-\sum_{j=1}^{P}\alpha_{j}^{(P)}x(t-j)
@@ -613,21 +780,49 @@ y(t)=x(t)-\sum_{j=1}^{P}\alpha_{j}^{(P)}x(t-j)
 
 \end_inset
 
+We used an AR(2) model for prewhitening (that is, P=2).
+ Our estimates of 
+\begin_inset Formula $\alpha$
+\end_inset
 
+ were: 
+\begin_inset Formula $\alpha_{1}=0.999999999945615$
+\end_inset
+
+, and 
+\begin_inset Formula $\alpha_{2}=-0.000000000000455$
+\end_inset
+
+.
+ The resulting pre-whitened data (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:AR2-resids"
+
+\end_inset
+
+) have the large scale trend in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:BMG-microbarometer-raw"
+
+\end_inset
+
+ removed.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename q7_residuals.pdf
 	lyxscale 50
-	scale 35
+	scale 50
 
 \end_inset
 
@@ -638,7 +833,14 @@ status open
 \begin_inset Caption
 
 \begin_layout Plain Layout
-Plot of AR2 Prediction Residuals
+AR2 Prediction Residuals
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:AR2-resids"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -660,6 +862,408 @@ Question 8 - Repetition of spectrum estimation with prewhitened data
 \end_layout
 
 \begin_layout Standard
+We repeated the adaptive multitaper as in question 4 on the prewhitened
+ data (NW=10, K=20, adaptive).
+ The spectrum of the prediction residuals is in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:AR2-resids-spectrum"
+
+\end_inset
+
+.
+ We corrected this spectrum estimate by adding back the power attributable
+ to the AR(2) portion of the original time series.
+ If 
+\begin_inset Formula $\hat{S}_{y}(f)$
+\end_inset
+
+ is the spectrum of the pre-whitened data, then we obtained the spectrum
+ estimate 
+\begin_inset Formula 
+\[
+\hat{S}_{x}(f)=\frac{\hat{S}_{z}(f)}{|1-\sum_{k=1}^{P}a_{k}e^{-i2\pi kf}|^{2}}
+\]
+
+\end_inset
+
+This corrected estimate is in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:spectrum-prewhite-mt"
+
+\end_inset
+
+, along with the original spectrum estimate for comparison.
+ The transfer function for the AR(2) prediction error filter was obtained
+ by dividing the pre-whitened spectrum 
+\begin_inset Formula $\hat{S}_{y}(f)$
+\end_inset
+
+ by the corrected spectrum 
+\begin_inset Formula $\hat{S}_{x}(f)$
+\end_inset
+
+ (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:AR2-resids-3"
+
+\end_inset
+
+).
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q8_ResidSpec.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Spectrum of AR2 prediction residuals
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:AR2-resids-spectrum"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q8_correctedSpec.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Comparison of the pre-whitened spectrum and the original spectrum
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:spectrum-prewhite-mt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename q8_Hf.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+AR(2) transfer function
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:AR2-resids-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 9: Rough test of stationarity
+\end_layout
+
+\begin_layout Standard
+As a rough test of stationarity, we computed the multitaper spectrum as
+ in question 4 (NW=10, K=20, adaptive) on four non-overlapping data sections
+ (1000 samples each).
+ All of the spectra were plotted together for comparison (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:stationarity-test"
+
+\end_inset
+
+).
+ It appears that on the timescale of 1000 samples, the data are not stationary,
+ with some sections of data trading low-frequency power for mid-frequency
+ power.
+ Over a longer timescale than 1000 samples, the data may appear more stationary
+ (although we did not check this).
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Q9.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Adaptive multitaper spectrum estimates for four non-overlapping sections
+ of the data (1000 samples each).
+ The top panel are the spectrum estimates, the bottom panel are ratios relative
+ to the spectrum for the first 1000 samples.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:stationarity-test"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Question 10: Estimates of coherence
+\end_layout
+
+\begin_layout Standard
+We used the same AR(2) pre-whitening filter on time series from both of
+ the instruments, and then estimated the coherence of the pre-whitened series.
+ The coherence estimates were done both with the adaptive weights (figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:coherence-adaptive"
+
+\end_inset
+
+) and without (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:coherence-noadapt"
+
+\end_inset
+
+).
+ The coherency was estimated as
+\begin_inset Formula 
+\[
+\hat{C}_{12}(f)=\frac{\hat{S}_{12}(f)}{\sqrt{\hat{S}_{11}(f)\hat{S}_{22}(f)}}\frac{\frac{1}{\sum_{k=0}^{K-1}d_{1,k}(f)d_{2,k}(f)}\sum_{k=0}^{K-1}d_{1,k}(f)d_{2,k}(f)x_{1,k}(f)x_{2,k}^{*}(f)}{\sqrt{\hat{S}_{11}(f)\hat{S}_{22}(f)}}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $d_{1,k}(f)$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{2,k}(f)$
+\end_inset
+
+ are the adaptive weights for taper 
+\begin_inset Formula $k$
+\end_inset
+
+ and instrument 1 and 2, respectively; 
+\begin_inset Formula $x_{1,k}(f)$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{2,k}(f)$
+\end_inset
+
+ are the eigencoefficients for taper 
+\begin_inset Formula $k$
+\end_inset
+
+ and instrument 1 and 2, respectively; and 
+\begin_inset Formula $\hat{S}_{11}(f)$
+\end_inset
+
+ and 
+\begin_inset Formula $\hat{S}_{22}(f)$
+\end_inset
+
+ are the adaptive multitaper spectrum estimates for taper 
+\begin_inset Formula $k$
+\end_inset
+
+ and instrument 1 and 2, respectively.
+ The phase was estimated as
+\begin_inset Formula 
+\[
+\phi(f)=\frac{360^{\circ}}{2\pi}\arctan\left(\frac{\textrm{Im}\left(\nicefrac{\hat{S}_{12}(f)}{|\hat{S}_{12}(f)|^{2}}\right)}{\textrm{Re}\left(\nicefrac{\hat{S}_{12}(f)}{|\hat{S}_{12}(f)|^{2}}\right)}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\hat{S}_{12}(f)$
+\end_inset
+
+ is the cross-spectrum defined above.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Q10.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Adaptive multitaper coherence estimates.
+ The top panel are estimates of the magnitude squared coherence.
+ The bottom panel are estimates of the phase of the coherence.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:coherence-adaptive"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Q10-noadapt.pdf
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Multitaper coherence estimates (no adaptive weighting).
+ The top panel are estimates of the magnitude squared coherence.
+ The bottom panel are estimates of the phase of the coherence.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:coherence-noadapt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 

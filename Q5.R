@@ -5,10 +5,10 @@
 # TODO:
 # - off by a scale factor? ... feck
 
-Q5 <- function(s.mt, data){
+Q5 <- function(s.mt, data, dt = 10){
   M <- 2*( length( s.mt ) - 1 )
   N <- length( data )
-  I.s <- ( sum( 2*s.mt[-c(1,length(s.mt))] ) + sum( s.mt[c(1,length(s.mt))] ) )/M
+  I.s <- ( sum( 2*s.mt[-c(1,length(s.mt))] ) + sum( s.mt[c(1,length(s.mt))] ) )/M/dt
   S2 <- (N-1)/N*var(data)
 
   # Estimate quantization noise power

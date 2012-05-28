@@ -26,5 +26,5 @@ Q7 <- function(data, R, AR_order){
   # The whitened data series.
   y.t <- data - ar.mod
   
-list(y.t=y.t[(AR_order+1):N], coef=phi)
+list(y.t=y.t[(AR_order+1):N], coef=phi[1:AR_order])
 }

@@ -2,7 +2,7 @@
 # Question 3
 ###
 
-Q3 <- function(data, N, M){
+Q3 <- function(data, N, M, dt = 10){
   
   multi <- mt(data, N, NW=6, M=2048, K=5, adaptiveWeight=FALSE)
   freq <- seq(0, 1/(2*10), 1/(10*M))
@@ -15,6 +15,7 @@ Q3 <- function(data, N, M){
   win.han <- (1/2) * (1 - cos(2 * pi * ((1:M2) + 0.5)/M2))
   # Normalize the Hanning window
   win.han <- win.han / sqrt(sum(win.han^2))
+  win.han <- win.han * sqrt(dt)
   
   # I should have used a loop or something else here...
   data.han1 <- data[1:400] * win.han

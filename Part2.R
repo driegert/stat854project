@@ -34,7 +34,7 @@ R <- Q6(s.amt$data.mt, R.B, N)
 
 # Returns the prewhitened data with N-AR_order points
 source('Q7.R')
-y.t <- Q7(data[[2]][1:N], R[[2]], 3)
+y.t <- Q7(data[[2]][1:N], R[[2]], 2)
 
 source('Q8.R')
 spec.est <- Q8(y.t$y.t, y.t$coef)
@@ -46,9 +46,9 @@ q9 <- Q9( data9, N, NW = 10, K = 20 )
 source("Q10.R")
 data.2 <- Q1(data_path, N, instrument = 2)
 R.B.2 <- Q2(data.2[[2]][1:N])
-s.amt.2 <- Q4(data.2, N, NW = 10, K = 20 )
+s.amt.2 <- Q4(data.2[[2]][1:N], N, NW = 10, K = 20 )
 R.2 <- Q6(s.amt.2$data.mt, R.B.2, N)
-y.t.2 <- Q7(data.2[[2]][1:N], R.2[[2]], 3)
+y.t.2 <- Q7(data.2[[2]][1:N], R.2[[2]], 2)
 
 q10 <- Q10( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=10, K = 20 )
 source("Q10noadapt.R")
@@ -60,8 +60,8 @@ q10.noadapt <- Q10noadapt( y.t[[1]], y.t.2[[1]], N=length(y.t[[1]]), NW=7 )
 # Question 1
 ###
 pdf("q1_data.pdf")
-plot(seq(0, 9999, 10), data$raw, type='l', xlab="Time (s)", ylab="Pressure (UNITS)",
-     main="BMG microbarameter", 
+plot(seq(0, 9999, 10), data$raw[1:1000], type='l', xlab="Time (s)"
+     , ylab="Pressure", main="BMG microbarameter", 
      sub="April 4, 2006 - 0 to 2:46:40 (h:mm:ss)")
 dev.off()
 
@@ -81,35 +81,35 @@ dev.off()
 ####
 pdf("q3_multitaper.pdf")
 plot(spec$freq, spec$mt, type='l', log='y',
-     ylab="Spectrum", xlab="Frequency (Hz)", 
+     ylab="Power", xlab="Frequency (Hz)", 
      main="BMG microbarometer - MT",
      sub="NW=6; K=5; M=2048")
 dev.off()
 
 pdf("q3_hanMean.pdf")
 plot(spec$freq, spec$han_mean, type='l', log='y', 
-     xlab="Frequency (Hz)", ylab="Spectrum", 
+     xlab="Frequency (Hz)", ylab="Power", 
      main="BMG microbarometer - Hanning Sections: Mean",
      sub="4 sections - 400 points each; 50% overlap; mean taken")
 dev.off()
 
 pdf("q3_hanMedian.pdf")
 plot(spec$freq, spec$han_med, type='l', log='y',
-     xlab="Frequency (Hz)", ylab="Spectrum", 
+     xlab="Frequency (Hz)", ylab="Power", 
      main="BMG microbarometer - Hanning Sections: Median", 
      sub="4 sections - 400 points each; 50% overlap; median taken")
 dev.off()
 
 pdf("q3_hanGeoMean.pdf")
 plot(spec$freq, spec$han_exp, type='l', log='y',
-     xlab="Frequency (Hz)", ylab="Spectrum", 
+     xlab="Frequency (Hz)", ylab="Power", 
      main="BMG microbarometer - Hanning Sections: Geometric Mean", 
      sub="4 sections - 400 points each; 50% overlap; geometric mean taken")
 dev.off()
 
 pdf("q3_hanningCompare.pdf")
 plot(spec$freq, spec$han_mean, type='l', log='y', lwd=2, 
-     xlab="Frequency (Hz)", ylab="Spectrum",
+     xlab="Frequency (Hz)", ylab="Power",
      main="BMG microbarometer - Hanning Sectioning Approach")
 lines(spec$freq, spec$han_med, col='red', lty=1)
 lines(spec$freq, spec$han_exp, col='blue', lty=2)
@@ -124,7 +124,7 @@ dev.off()
 ########
 pdf("q4_multitaper.pdf")
 plot(s.amt$freq, s.amt$data.mt, type='l', log='y',
-     xlab="Frequency (Hz)", ylab="Spectrum", 
+     xlab="Frequency (Hz)", ylab="Power", 
      main="BMG microbarometer - Multitaper, Adpt Weight",
      sub="1000 samples; NW=10; K=20; M=2048")
 dev.off()
@@ -142,30 +142,32 @@ dev.off()
 # Question 7
 ########
 pdf("q7_residuals.pdf")
-plot(seq(1000-length(y.t), 10*length(y.t), 10), y.t, type='l', xlab="Time (s)", 
-     ylab="Prediction Residual", 
-     main="BMG microbarometer - AR2 Prediction Residuals")
+plot(((1000-(length(y.t$y.t)-1)):1000)*10, y.t$y.t, type='l', xlab="Time (s)"
+     , ylab="Prediction Residual", las=1
+     , main="BMG microbarometer - AR2 Prediction Residuals")
 dev.off()
 
 # Question 8
 #######
 pdf("q8_ResidSpec.pdf")
 plot(spec.est$res.spec, type='l', log='y',
-     xlab="Frequency (Hz)", ylab="Spectrum", 
+     xlab="Frequency (Hz)", ylab="Power", 
      main="Spectrum of the AR2 Prediction Residuals")
 dev.off()
 
-# ABSOLUTE VALUE SYMBOL IN ylab NEEDED!!
+
 pdf("q8_Hf.pdf")
-plot(spec.est$freq, spec.est$H, type='l', xlab="Frequency (Hz)", 
-     ylab=expression(H(f)^2), 
-     main="TITLE HERE")
+par.mar <- par("mar")
+par(mar=par.mar+c(0,1,0,0))
+plot(spec.est$freq, spec.est$H, type='l', xlab="Frequency (Hz)"
+     , ylab=expression("|H(f)|"^2), las = 1
+     , main="Transfer function")
 dev.off()
 
 pdf("q8_correctedSpec.pdf")
 plot(spec.est$freq, spec.est$data.corr, type='l', log='y', 
-     xlab="Frequency (Hz)", ylab="Spectrum", 
-     main="Comparison of Direct and Prewhitened Estimations")
+     xlab="Frequency (Hz)", ylab="Power", 
+     main="Comparison of Direct and Prewhitened Estimates")
 lines(s.amt, col='red')
 legend("topright", c("Prewhitened", "Direct"), col=c("black", "red"), 
        lwd=c(1,1))
