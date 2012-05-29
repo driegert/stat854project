@@ -3,6 +3,9 @@
 \begin_document
 \begin_header
 \textclass article
+\begin_preamble
+\usepackage{verbatim}
+\end_preamble
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -794,7 +797,12 @@ We used an AR(2) model for prewhitening (that is, P=2).
 \end_inset
 
 .
- The resulting pre-whitened data (figure 
+ We then re-centered the pre-whitened data.
+ The new series 
+\begin_inset Formula $y(t)$
+\end_inset
+
+ (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:AR2-resids"
@@ -882,7 +890,7 @@ reference "fig:AR2-resids-spectrum"
  estimate 
 \begin_inset Formula 
 \[
-\hat{S}_{x}(f)=\frac{\hat{S}_{z}(f)}{|1-\sum_{k=1}^{P}a_{k}e^{-i2\pi kf}|^{2}}
+\hat{S}_{x}(f)=\frac{\hat{S}_{y}(f)}{|1-\sum_{k=1}^{P}a_{k}e^{-i2\pi kf}|^{2}}
 \]
 
 \end_inset
@@ -1065,7 +1073,7 @@ status collapsed
 \begin_inset Graphics
 	filename Q9.pdf
 	lyxscale 50
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -1186,14 +1194,14 @@ where
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename Q10.pdf
 	lyxscale 50
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -1234,7 +1242,7 @@ status collapsed
 \begin_inset Graphics
 	filename Q10-noadapt.pdf
 	lyxscale 50
-	scale 50
+	scale 65
 
 \end_inset
 
@@ -1260,6 +1268,230 @@ name "fig:coherence-noadapt"
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Appendix: R code
+\end_layout
+
+\begin_layout Subsection*
+Main script
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Part2.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Our humble multitaper function
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{mt.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Scripts for each question
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q1.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q2.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q3.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q4.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q5.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q6.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q7.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q8.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q9.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q10.R}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+verbatiminput{Q10noadapt.R}
 \end_layout
 
 \end_inset
